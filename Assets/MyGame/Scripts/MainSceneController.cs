@@ -10,12 +10,15 @@ public class MainSceneController : MonoBehaviour
 
     public bool testing;
 
-    public void CheckAddition(int valueOne, int valueTwo)
+    public int CheckAddition(int summandOne, int summandTwo)
     {
         int result = 0;
+        
         testing = false;
 
         result = summandOne + summandTwo;
+
+        return result;
     }
 
     void Start()
@@ -30,7 +33,7 @@ public class MainSceneController : MonoBehaviour
         valueOne = inputFieldValueOne.text;
         valueTwo = inputFieldValueTwo.text;
 
-        Debug.Log("Methode GetValues wird ausgeführt:" + CheckAddition());
+        Debug.Log("Methode GetValues wird ausgeführt:" + CheckAddition(int.Parse(valueOne), int.Parse(valueTwo)));
     }
 
     void Update()
