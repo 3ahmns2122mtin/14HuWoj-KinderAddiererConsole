@@ -7,14 +7,15 @@ public class MainSceneController : MonoBehaviour
 {
     [SerializeField] private InputField inputFieldValueOne, inputFieldValueTwo;
     [SerializeField] private Text textResult;
+    [SerializeField] private GameObject resetButton;
 
-    public bool testing;
+    private string valueOne, valueTwo;
+
+    private int termOne, termTwo;
 
     public int CheckAddition(int summandOne, int summandTwo)
     {
         int result = 0;
-        
-        testing = false;
 
         result = summandOne + summandTwo;
 
@@ -28,19 +29,31 @@ public class MainSceneController : MonoBehaviour
 
     public void GetValues()
     {
-        string valueOne, valueTwo;
-
         valueOne = inputFieldValueOne.text;
         valueTwo = inputFieldValueTwo.text;
 
-        Debug.Log("Methode GetValues wird ausgeführt:" + CheckAddition(int.Parse(valueOne), int.Parse(valueTwo)));
+        termOne = int.Parse(valueOne);
+        termTwo = int.Parse(valueTwo);
+
+        textResult.text = CheckAddition(termOne, termTwo).ToString();
+
+        try
+        {
+            termOne = int.Parse(inputFieldValueOne.text);
+            termTwo = int.Parse(inputFieldValueTwo.text);
+        }
+        catch (System.Exception)
+        {
+            inputFieldValueOne.GetComponent<InputField>().image.color = Color.red;
+            inputFieldValueOne.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Bitte richtigen Wert eingeben";
+
+            inputFieldValueTwo.GetComponent<InputField>().image.color = Color.red;
+            inputFieldValueTwo.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Bitte richtigen Wert eingeben";
+        }
     }
 
     void Update()
     {
-        if (testing)
-        {
-            GetValues();
-        }
+
     }
 }
