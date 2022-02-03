@@ -40,20 +40,42 @@ public class MainSceneController : MonoBehaviour
         try
         {
             termOne = int.Parse(inputFieldValueOne.text);
-            termTwo = int.Parse(inputFieldValueTwo.text);
         }
         catch (System.Exception)
         {
             inputFieldValueOne.GetComponent<InputField>().image.color = Color.red;
             inputFieldValueOne.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Bitte richtigen Wert eingeben";
+            inputFieldValueOne.text = "";
+        }
 
+        try
+        {
+            termTwo = int.Parse(inputFieldValueTwo.text);
+        }
+        catch (System.Exception)
+        {
             inputFieldValueTwo.GetComponent<InputField>().image.color = Color.red;
             inputFieldValueTwo.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Bitte richtigen Wert eingeben";
+            inputFieldValueTwo.text = "";
         }
     }
 
-    void Update()
+    public void ResetButton()
     {
+        inputFieldValueOne.text = "";
+        inputFieldValueTwo.text = "";
 
+        textResult.text = "result";
+
+        valueOne = "0";
+        valueTwo = "0";
+
+        inputFieldValueOne.GetComponent<InputField>().image.color = Color.white;
+        inputFieldValueTwo.GetComponent<InputField>().image.color = Color.white;
+
+        inputFieldValueOne.GetComponent<InputField>().GetComponent<Text>().text = "Value one...";
+        inputFieldValueTwo.GetComponent<InputField>().GetComponent<Text>().text = "Value two...";
+
+        Debug.Log("Es wird resetet");
     }
 }
